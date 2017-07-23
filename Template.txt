@@ -1,0 +1,14 @@
+ExpStart=fast-experience|Processing started with incoming payload
+ExpTriggerPro=fast-experience|Calling process userGet
+ProcStart=fast-process|Processing started with incoming payload
+ProTriggerSys=fast-process|Calling  getUserByParamSystemCallOut
+Pro2TriggerSys=fast-process|Calling getUserByIdSystemCallOut
+SysStart=fast-system|Processing started
+SysTriggerExt=fast-system|Calling IDM GetUser
+SysRespExt=fast-system|IDM Get User Response
+SysExit=fast-system|Processing completed with outgoing payload
+ProGotSysResp=fast-process|CallCompleted getUserByParamSystemCallOut
+Pro2GotSysResp=fast-process|CallCompleted getUserByIdSystemCallOut
+ProExit=fast-process|Processing completed with outgoing payload
+ExpGotProResp=fast-experience|Process SOAP GET user Response
+ExpExit=fast-experience|Processing completed with outgoing payload
