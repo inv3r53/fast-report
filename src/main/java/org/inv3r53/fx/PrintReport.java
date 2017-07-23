@@ -22,18 +22,23 @@ public class PrintReport {
 		Map<String, Record> records = getRecords(corrIds, templateData, args[2]);
 
 		int maxCols = 0;
+		Record maxRecord = null;
 		for (Map.Entry<String, Record> row : records.entrySet()) {
 
 			List<Log> logs = row.getValue().getLogs();
 
 			if (maxCols <= logs.size()) {
 				maxCols = logs.size();
-
+				maxRecord = row.getValue();
 			}
 
 		}
 
+		String header = getHeader(maxRecord);
+
 		StringBuilder sb = new StringBuilder();
+		sb.append(header).append("\n");
+
 		for (Map.Entry<String, Record> row : records.entrySet()) {
 			sb.append(row.getKey()).append("|");
 			List<Log> logs = row.getValue().getLogs();
@@ -59,6 +64,16 @@ public class PrintReport {
 		} finally {
 			IOUtils.closeQuietly(pw);
 		}
+	}
+
+	private static String getHeader(Record maxRecord) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("CorrId|");
+		List<Log> logs = maxRecord.getLogs();
+		for (Log l : logs) {
+			sb.append(l.getTemplateKey()).append("|");
+		}
+		return sb.toString();
 	}
 
 	private static Map<String, Record> getRecords(List<String> corrIds, List<Criteria> templateData, String logFile) {
